@@ -1,0 +1,98 @@
+hr.hr-2 {
+    height: 2px;
+}
+
+.logout-button {
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 1) !important;
+}
+
+.logout-button:hover {
+    cursor: pointer;
+}
+
+.logout-button:focus {
+    outline: none;
+}
+
+img.img-thumbnail {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px; /* Rounded border */
+    padding: 5px; /* Some padding */
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.my-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.my-container img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+/ / opacity: 0.6;
+}
+
+html, body {
+    margin-top: 36px;
+    height: 100%;
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    position: relative;
+
+}
+
+
+.jumbotron {
+    padding: 1rem 2rem;
+    background-color: #f3e97a;
+    font-style: oblique;
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+
+.btn-custom {
+    color: white;
+}
+
+.btn-width {
+    width: 120px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 35vh;
+    object-fit: cover;
+}
+
+#sticky-footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+.error {
+    color: red;
+}
+
+.nav-custom {
+    color: rgba(255, 255, 255, .5) !important;
+}
+
+.btn-width-offers {
+    width: 100px;
+}
+

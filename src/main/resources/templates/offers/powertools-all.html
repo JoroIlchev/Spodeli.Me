@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body  th:background="${url}">
+<header>
+    <th:block th:include="~{fragments/navbar}"/>
+</header>
+
+<main class="container fill">
+    <h1 class="text-center text-dark">Всички споделяния в Машини и Инструменти</h1>
+    <hr class="hr-2 bg-dark w-75">
+    <table class="table table-hover w-75 mx-auto">
+        <thead>
+        <tr class="row mx-auto">
+            <th class="col-md-2 text-center">Снимка</th>
+            <th class="col-md-3 text-center">Име</th>
+            <th class="col-md-1 text-center">Цена</th>
+            <th class="col-md-2 text-center">Регион</th>
+            <th class="col-md-4 text-center">Валидност на обявата</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="offer : ${offers}">
+            <tr class="row mx-auto">
+                <td class="col-md-2">
+                    <a th:href="@{/offer/powertools/details/{id}(id=${offer.id})}">
+                        <div class="text-center"><img th:src="${offer.image}" width="40" height="40" alt="Product">
+                        </div>
+                    </a>
+                </td>
+                <td class="col-md-3 text-center">
+                    <a th:href="@{/offer/powertools/details/{id}(id=${offer.id})}">
+                        [[${offer.name}]]
+                    </a>
+                </td>
+                <td class="col-md-1 text-center" th:text="${offer.price}"></td>
+                <td class="col-md-2 text-center" th:text="${offer.region}"></td>
+                <td class="col-md-4 text-center">[[${offer.startsOn}]] - [[${offer.endsOn}]]</td>
+
+            </tr>
+        </th:block>
+        <div th:if="${#lists.isEmpty(offers)}">
+            <tr class="row mx-auto">
+                <td class="font-weight-bold col-md-12 text-center">Няма публикувани обяви в категорията</td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+    <hr class="hr-2 bg-dark w-75">
+</main>
+
+<th:block th:include="~{fragments/footer}"/>
+</body>
+
+
+</html>

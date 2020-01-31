@@ -1,0 +1,61 @@
+<th:block>
+    <div class="form-group">
+        <label for="name" class="font-weight-bold">Име</label>
+        <input type="text" class="form-control" id="name" placeholder="Име на обявата" name="name" th:value="*{name}"
+               required minlength="3" maxlength="20">
+        <th:block th:if="${#fields.hasErrors('name')}">
+            <small class="error" th:errors="*{name}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="add-product-description" class="font-weight-bold">Описание</label>
+        <textarea name="description" id="add-product-description" class="form-control" rows="5"
+                  th:field="*{description}" required></textarea>
+        <th:block th:if="${#fields.hasErrors('description')}">
+            <small class="error" th:errors="*{description}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="starts-date" class="font-weight-bold">Валидна от:</label>
+        <input type="date" name="startsOn" id="starts-date" class="form-control" th:field="*{startsOn}" required/>
+        <th:block th:if="${#fields.hasErrors('startsOn')}">
+            <small class="error" th:errors="*{startsOn}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="ends-date" class="font-weight-bold">Валидна до:</label>
+        <input type="date" name="endsOn" id="ends-date" class="form-control" th:field="*{endsOn}" required/>
+        <th:block th:if="${#fields.hasErrors('endsOn')}">
+            <small class="error" th:errors="*{endsOn}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="price" class="font-weight-bold">Цена</label>
+        <input type="number" name="price" id="price" class="form-control" step="0.01" th:field="*{price}" required
+        min="0"/>
+        <th:block th:if="${#fields.hasErrors('price')}">
+            <small class="error" th:errors="*{price}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="inputRegion" class="font-weight-bold">Област</label>
+        <select class="form-control" id="inputRegion" th:field="*{region}">
+            <option value="" selected disabled>Избери регион</option>
+            <option th:each="region: ${T(softuni.project.data.entities.enums.Region).values()}"
+                    th:text="${region.name}" th:value="${region}"></option>
+        </select>
+        <th:block th:if="${#fields.hasErrors('region')}">
+            <small class="error" th:errors="*{region}"></small>
+        </th:block>
+    </div>
+
+    <div class="form-group">
+        <label for="ownerPhoneNumber" class="font-weight-bold">Телефон за контакт</label>
+        <input type="text" class="form-control" id="ownerPhoneNumber" name="ownerPhoneNumber"
+               th:field="*{ownerPhoneNumber}" required/>
+        <th:block th:if="${#fields.hasErrors('ownerPhoneNumber')}">
+            <small class="error" th:errors="*{ownerPhoneNumber}"></small>
+        </th:block>
+    </div>
+
+</th:block>

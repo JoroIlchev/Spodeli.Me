@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+
+</head>
+<body  th:background="${url}">
+<header>
+    <th:block th:include="~{fragments/navbar}"/>
+</header>
+
+<main class="container mt-4">
+    <h1 class="text-center text-dark">Работа с обяви</h1>
+    <hr class="hr-2 bg-dark w-100">
+
+    <h3 class="text-center text-dark">Избери категория</h3>
+    <div class="text-center">
+        <div class="custom-control custom-radio mt-3 custom-control-inline">
+            <input type="radio" id="allRadio" name="selection"
+                   class="custom-control-input"
+                   value="allOffers">
+            <label class="h6 custom-control-label" for="allRadio">Всички обяви</label>
+        </div>
+        <th:block th:each="category : ${categories}" th:object="${category}">
+
+            <div class="custom-control custom-radio mt-3 custom-control-inline">
+                <input type="radio" th:id="|*{categoryUrl}Radio|" name="selection"
+                       class="custom-control-input"
+                       th:value="*{categoryUrl}">
+                <label class="h6 custom-control-label" th:for="|*{categoryUrl}Radio|"
+                       th:text="*{name}"></label>
+            </div>
+
+        </th:block>
+    </div>
+    <hr class="hr-2 bg-dark w-100">
+    <table class="table table-hover w-100 mx-auto">
+        <thead>
+        <tr class="row mx-auto">
+
+            <th class="col-md-2 text-center font-weight-bold">Име</th>
+            <th class="col-md-3 text-center font-weight-bold">Валидност на обявата</th>
+            <th class="col-md-1 text-center font-weight-bold">Цена</th>
+            <th class="col-md-1 text-center font-weight-bold">Активна</th>
+            <th class="col-md-1 text-center font-weight-bold">Одобрена</th>
+            <th class="col-md-4 text-center font-weight-bold">Модерация</th>
+        </tr>
+        </thead>
+        <tbody id="all-offers">
+
+
+        </tbody>
+    </table>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+<th:block th:include="~{fragments/footer}"/>
+</body>
+
+<script>
+    $(".navbar ul li a").each(function () {
+        if (this.href === window.location.href) {
+            $(this).parent().addClass("active")
+        }
+    })
+</script>
+<script src="/js/allOffers.js"></script>
+<script src="/js/popUpInfo.js"></script>
+</html>

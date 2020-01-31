@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body  th:background="${url}">
+<header>
+    <th:block th:include="~{fragments/navbar}"/>
+</header>
+<main class="container mt-4">
+    <h1 class="text-center text-dark">Промени обява</h1>
+    <hr class="hr-2 bg-dark w-auto">
+    <form id="add-category-form" class="form w-25 mx-auto" th:action="@{/offer/powertools/edit/{id}(id=${model.id})}" method="post"
+          enctype="multipart/form-data" th:object="${model}">
+
+        <th:block th:include="~{fragments/add-base-offer}"/>
+
+
+
+        <div class="form-group">
+            <label for="toolCondition" class="font-weight-bold">Състояние</label>
+            <input type="text" name="toolCondition" id="toolCondition" class="form-control"
+                   th:value="*{toolCondition}" required/>
+            <th:block th:if="${#fields.hasErrors('toolCondition')}">
+                <small class="error" th:errors="*{toolCondition}"></small>
+            </th:block>
+        </div>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="isPortable"
+               id="isPortable" value="true" th:checked="*{isPortable}">
+        <label class="form-check-label" for="isPortable">
+            Лесно преносим ли е инструмента?
+        </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox"
+                   name="isNeedExtraEquipment"
+                   id="isNeedExtraEquipment" value="true" th:checked="*{isNeedExtraEquipment}">
+            <label class="form-check-label" for="isNeedExtraEquipment">
+                Има ли нужда от допълнително оборудване?
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="isNeedSpecialSkills"
+                   id="isNeedSpecialSkills" value="true" th:checked="*{isNeedSpecialSkills}">
+            <label class="form-check-label" for="isNeedSpecialSkills">
+                Необходимо ли са специални умения за работа с инструмента?
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox"  name="depositNeeded"
+                   id="depositNeeded" value="true" th:checked="*{depositNeeded}">
+            <label class="form-check-label" for="depositNeeded">
+                Необходим ли е депозит?
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="add-product-image" class="font-weight-bold">Снимка на офертата</label>
+            <input type="file" class="form-control-file" id="add-product-image" name="image">
+        </div>
+        </div>
+        <hr class="hr-2 bg-dark">
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-info">Обнови</button>
+        </div>
+    </form>
+</main>
+
+
+<th:block th:include="~{fragments/footer}"/>
+</body>
+
+</html>

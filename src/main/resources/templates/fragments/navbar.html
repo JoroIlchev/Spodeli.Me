@@ -1,0 +1,87 @@
+<th:block>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top rounded">
+        <div class="container">
+            <th:block sec:authorize="isAnonymous()">
+                <a class="navbar-brand" th:href="@{/}">Spodeli.Me</a>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <a class="navbar-brand" th:href="@{/home}">Spodeli.Me</a>
+            </th:block>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <th:block sec:authorize="isAnonymous()">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/users/login}">Влез</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/users/register}">Регистрирай се</a>
+                        </li>
+                    </th:block>
+                    <th:block sec:authorize="isAuthenticated()">
+                        <li class="nav-item">
+                            <div class="dropdown show">
+                                <a class="nav-link dropdown-toggle nav-custom" href="#" role="button" id="offerDropdown"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Добави обява
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="offerDropdown">
+                                    <a class="dropdown-item" th:href="@{/offer/add/clothes}">Дрехи и аксесоари</a>
+                                    <a class="dropdown-item" th:href="@{/offer/add/realestate}">Имоти</a>
+                                    <a class="dropdown-item" th:href="@{/offer/add/powertool}">Машини и инструменти</a>
+                                    <a class="dropdown-item" th:href="@{/offer/add/vehicle}">Превозни средства</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item ">
+                            <th:form>
+                                <a class="nav-link" th:href="@{/users/profile}">Моят профил</a>
+                            </th:form>
+                        </li>
+                        <li class="nav-item ">
+                            <th:form>
+                                <a class="nav-link" th:href="@{/offer/my/all}">Моите обяви</a>
+                            </th:form>
+                        </li>
+
+                        <th:block sec:authorize="hasRole('ROLE_MODERATOR')">
+                            <li class="nav-item ">
+                                <th:form>
+                                    <a class="nav-link" th:href="@{/offer/all}">Работа с обяви</a>
+                                </th:form>
+                            </li>
+<!--                            <li class="nav-item">-->
+<!--                                <div class="dropdown show">-->
+<!--                                    <a class="nav-link dropdown-toggle nav-custom" href="#" role="button"-->
+<!--                                       id="moderatorDropdown"-->
+<!--                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                        Работа с обяви-->
+<!--                                    </a>-->
+<!--                                    <div class="dropdown-menu" aria-labelledby="moderatorDropdown">-->
+<!--                                        <a class="dropdown-item" th:href="@{/offer/my/all}">Моите обяви</a>-->
+<!--                                        <a class="dropdown-item" th:href="@{/offer/all}">Всички обяви</a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </li>-->
+                        </th:block>
+                        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/users/all}">Всички потребители</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/category/all}">Всички категории</a>
+                            </li>
+                        </th:block>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-white" th:href="@{/logout}">Изход</a>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</th:block>

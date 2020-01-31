@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body>
+<body  th:background="${url}">
+<header>
+    <th:block th:include="~{fragments/navbar}"/>
+</header>
+
+<main class="container fill">
+    <th:block th:object="${category}">
+    <h1 class="text-center text-dark">Редакция на [[${category.name}]]</h1>
+    <hr class="hr-2 bg-dark w-25">
+
+        <form id="add-category-form" class="form w-25 mx-auto" th:action="@{/category/edit/{id}(id=*{id})}" method="post"
+              enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="add-category-name" class="font-weight-bold">Име</label>
+                <input type="text" class="form-control text-center" id="add-category-name" name="name" th:value="*{name}">
+                <div class="form-group">
+                    <label for="add-product-description" class="font-weight-bold">Описание</label>
+                    <textarea name="description" id="add-product-description" class="form-control" rows="5" th:text="*{description}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="categoryUrl" class="font-weight-bold">Url на категорията</label>
+                    <input type="text" name="categoryUrl" id="categoryUrl" class="form-control" th:value="*{categoryUrl}"/>
+                </div>
+                <div class="form-group">
+                    <label for="add-product-image" class="font-weight-bold">Аватар на категорията</label>
+                    <input type="file" class="form-control-file" id="add-product-image" name="image">
+                </div>
+            </div>
+            <hr class="hr-2 bg-dark">
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-info">Обнови категория</button>
+            </div>
+        </form>
+    </th:block>
+</main>
+
+
+<th:block th:include="~{fragments/footer}"/>
+</body>
+<script>
+    $(".navbar ul li a").each(function () {
+        if(this.href === window.location.href){
+            $(this).parent().addClass("active")
+        }
+    })
+</script>
+
+</html>

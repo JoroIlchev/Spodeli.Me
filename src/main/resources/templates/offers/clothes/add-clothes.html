@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body  th:background="${url}">
+<header>
+    <th:block th:include="~{fragments/navbar}"/>
+</header>
+<main class="container mt-4">
+    <h1 class="text-center text-dark">Сподели Дреха или аксесоар!</h1>
+    <hr class="hr-2 bg-dark w-auto">
+    <form id="add-category-form" class="form w-25 mx-auto" th:action="@{/offer/add/clothes}" method="post"
+          enctype="multipart/form-data" th:object="${model}">
+
+        <th:block th:include="~{fragments/add-base-offer}"/>
+
+        <div class="form-group">
+            <label for="size" class="font-weight-bold">Размер</label>
+            <input type="text" name="size" id="size" class="form-control"  th:value="*{size}" required/>
+            <th:block th:if="${#fields.hasErrors('size')}">
+                <small class="error" th:errors="*{size}"></small>
+            </th:block>
+        </div>
+
+        <div class="form-group">
+            <label for="entityCondition" class="font-weight-bold">Състояние</label>
+            <input type="text" name="entityCondition" id="entityCondition" class="form-control"
+                   th:value="*{entityCondition}" required/>
+            <th:block th:if="${#fields.hasErrors('entityCondition')}">
+                <small class="error" th:errors="*{entityCondition}"></small>
+            </th:block>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" th:text="*{depositNeeded}" name="depositNeeded"
+                   id="depositNeeded" value="true">
+            <label class="form-check-label" for="depositNeeded">
+                Необходим ли е депозит?
+            </label>
+        </div>
+
+
+        <div class="form-group">
+            <label for="add-product-image" class="font-weight-bold">Снимка на офертата</label>
+            <input type="file" class="form-control-file" id="add-product-image" name="image">
+        </div>
+        </div>
+        <hr class="hr-2 bg-dark">
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-info">Сподели</button>
+        </div>
+    </form>
+</main>
+
+
+<th:block th:include="~{fragments/footer}"/>
+</body>
+
+</html>

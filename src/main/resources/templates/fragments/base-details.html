@@ -1,0 +1,38 @@
+<th:block>
+
+
+    <div class="row">
+        <img th:src="*{image}" width="150" alt="Product">
+    </div>
+    <div class="row ">
+        <div class="col col-md-12 mt-2">
+            <h3>[[*{name}]]</h3>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col col-md-12 mt-2">
+            <p class="font-weight-bold">Описание: [[*{description}]]</p>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col col-md-12 mt-2">
+            <p class="font-weight-bold">Обявата е валидна за периода: [[*{startsOn}]] - [[*{endsOn}]]</p>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col col-md-12 mt-2">
+            <p class="font-weight-bold">Цена: [[*{price}]] лв.</p>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col col-md-12 mt-2">
+            <p class="font-weight-bold">Обявата е за регион: [[*{region}]]</p>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col col-md-12 mt-2">
+            <p class="font-weight-bold">Телефон за връзка: [[*{ownerPhoneNumber}]]</p>
+        </div>
+    </div>
+
+</th:block>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body  th:background="${url}">
+<header>
+    <th:block th:include="~{fragments/navbar}"/>
+</header>
+<main class="container mt-4">
+    <h1 class="text-center text-dark">Сподели Превозно средство!</h1>
+    <hr class="hr-2 bg-dark w-auto">
+    <form id="add-category-form" class="form w-25 mx-auto" th:action="@{/offer/add/vehicle}" method="post"
+          enctype="multipart/form-data" th:object="${model}">
+
+        <th:block th:include="~{fragments/add-base-offer}"/>
+
+        <div class="form-group">
+            <label for="brand" class="font-weight-bold">Марка</label>
+            <input type="text" name="brand" id="brand" class="form-control" th:text="*{brand}" required/>
+            <th:block th:if="${#fields.hasErrors('brand')}">
+                <small class="error" th:errors="*{brand}"></small>
+            </th:block>
+        </div>
+        <div class="form-group">
+            <label for="model" class="font-weight-bold">Модел</label>
+            <input type="text" name="model" id="model" class="form-control" th:text="*{model}" required/>
+            <th:block th:if="${#fields.hasErrors('model')}">
+                <small class="error" th:errors="*{model}"></small>
+            </th:block>
+        </div>
+        <div class="form-group">
+            <label for="fuel" class="font-weight-bold">Тип гориво</label>
+            <input type="text" name="fuel" id="fuel" class="form-control" th:text="*{fuel}" />
+        </div>
+        <div class="form-group">
+            <label for="inputGearBox" class="font-weight-bold">Скоростна кутия</label>
+            <select class="form-control" id="inputGearBox" th:field="*{gearBox}">
+                <option th:each="gearBox: ${T(softuni.project.data.entities.enums.GearBoxType).values()}"
+                        th:text="${gearBox.name}" th:value="${gearBox}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="kilometers" class="font-weight-bold">Пробег</label>
+            <input type="number" name="kilometers" id="kilometers" class="form-control" th:text="*{kilometers}"/>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" th:text="*{drivingLicenseNeeded}"
+                   name="drivingLicenseNeeded"
+                   id="drivingLicenseNeeded" value="false">
+            <label class="form-check-label" for="drivingLicenseNeeded">
+                Необходимо ли е свидетелство за управление?
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="drivingCategory" class="font-weight-bold">Категория</label>
+            <input type="text" name="drivingCategory" id="drivingCategory" class="form-control"
+                   th:text="*{drivingCategory}"/>
+        </div>
+
+
+        <div class="form-group">
+            <label for="add-product-image" class="font-weight-bold">Снимка на офертата</label>
+            <input type="file" class="form-control-file" id="add-product-image" name="image">
+        </div>
+        </div>
+        <hr class="hr-2 bg-dark">
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-info">Сподели</button>
+        </div>
+    </form>
+</main>
+
+
+<th:block th:include="~{fragments/footer}"/>
+</body>
+<script>
+    $(".navbar ul li a").each(function () {
+        if (this.href === window.location.href) {
+            $(this).parent().addClass("active")
+        }
+    })
+</script>
+</html>

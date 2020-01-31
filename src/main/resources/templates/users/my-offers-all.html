@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body th:background="${url}">
+<header>
+    <th:block th:include="~{fragments/navbar}"/>
+</header>
+
+<main class="container mt-4">
+    <h1 class="text-center text-dark">Моите обяви</h1>
+    <hr class="hr-2 bg-dark w-100">
+
+    <h3 class="text-center text-dark">Избери категория</h3>
+    <div class="text-center">
+        <div class="custom-control custom-radio mt-3 custom-control-inline">
+            <input type="radio" id="allRadio" name="selection"
+                   class="custom-control-input"
+                   value="allOffers">
+            <label class="h6 custom-control-label" for="allRadio">Всички обяви</label>
+        </div>
+        <th:block th:each="category : ${categories}" th:object="${category}">
+            <div class="custom-control custom-radio mt-3 custom-control-inline">
+                <input type="radio" th:id="|*{categoryUrl}Radio|" name="selection"
+                       class="custom-control-input"
+                       th:value="*{categoryUrl}">
+                <label class="h6 custom-control-label" th:for="|*{categoryUrl}Radio|"
+                       th:text="*{name}"></label>
+            </div>
+        </th:block>
+    </div>
+    <hr class="hr-2 bg-dark w-100">
+    <table class="table table-hover w-100 mx-auto">
+        <thead>
+        <tr class="row mx-auto">
+            <th class="col-md-1 text-center font-weight-bold">Снимка</th>
+            <th class="col-md-2 text-center font-weight-bold">Име</th>
+            <th class="col-md-3 text-center font-weight-bold">Валидност на обявата</th>
+            <th class="col-md-1 text-center font-weight-bold">Цена</th>
+            <th class="col-md-1 text-center font-weight-bold">Активна</th>
+            <th class="col-md-1 text-center font-weight-bold">Одобрена</th>
+            <th class="col-md-3 text-center font-weight-bold">Модерация</th>
+
+        </tr>
+        </thead>
+        <tbody id="my-offers">
+
+
+        </tbody>
+    </table>
+</main>
+
+<th:block th:include="~{fragments/footer}"/>
+</body>
+
+<script>
+    $(".navbar ul li a").each(function () {
+        if (this.href === window.location.href) {
+            $(this).parent().addClass("active")
+        }
+    })
+</script>
+<script src="/js/myOffers.js"></script>
+</html>

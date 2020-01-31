@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body th:background="${url}">
+<header>
+    <th:block th:include="~{fragments/navbar}"/>
+</header>
+<main class="container fill">
+    <th:block th:object="${model}">
+        <div class="text-left">
+            <th:block th:include="~{fragments/base-details}"/>
+
+
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <p class="font-weight-bold">Тип на имота: [[*{type}]]</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <p class="font-weight-bold">Площ на имота: [[*{area}]] кв. м.</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <p class="font-weight-bold">Екстри: [[*{extras}]]</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <p class="font-weight-bold">Взъмножност за организиране на парти: [[*{isPartyFree}]]</p>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <a th:href="@{/offer/category/{url}(url ='realestates')}" class="btn btn-info">Върни се обратно</a>
+                </div>
+            </div>
+        </div>
+    </th:block>
+
+</main>
+
+<th:block th:include="~{fragments/footer}"/>
+</body>
+
+</html>

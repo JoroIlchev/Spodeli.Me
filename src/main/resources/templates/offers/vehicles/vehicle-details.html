@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body th:background="${url}">
+<header>
+    <th:block th:include="~{fragments/navbar}"/>
+</header>
+<main class="container  mt-4">
+    <th:block th:object="${model}">
+        <div class="text-left">
+            <th:block th:include="~{fragments/base-details}"/>
+
+
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <p class="font-weight-bold">Производител: [[*{brand}]]</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <p class="font-weight-bold">Модел: [[*{model}]]</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <p class="font-weight-bold">Гориво: [[*{fuel}]]</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <p class="font-weight-bold">Скоростна кутия: [[*{gearBox}]]</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <p class="font-weight-bold">Пробег на превозното средство: [[*{kilometers}]]</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <p class="font-weight-bold">Необходимо ли е свидетелство за управление:
+                        [[*{drivingLicenseNeeded}]]</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <p class="font-weight-bold">Необходима категория: [[*{drivingCategory}]]</p>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col col-md-12 mt-2">
+                    <a th:href="@{/offer/category/{url}(url ='vehicles')}" class="btn btn-info">Върни се обратно</a>
+                </div>
+            </div>
+        </div>
+    </th:block>
+
+</main>
+
+<th:block th:include="~{fragments/footer}"/>
+</body>
+
+</html>

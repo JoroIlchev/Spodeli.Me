@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body  th:background="${url}">
+<header>
+    <th:block th:include="~{fragments/navbar}"/>
+</header>
+<main class="container mt-4">
+    <h1 class="text-center text-dark">Сподели Имот!</h1>
+    <hr class="hr-2 bg-dark w-auto">
+    <form id="add-category-form" class="form w-25 mx-auto" th:action="@{/offer/add/realestate}" method="post"
+          enctype="multipart/form-data" th:object="${model}">
+
+        <th:block th:include="~{fragments/add-base-offer}"/>
+
+
+        <div class="form-group">
+            <label for="typeOfRealEstate" class="font-weight-bold">Тип на имота</label>
+            <select class="form-control" id="typeOfRealEstate" th:field="*{type}">
+                <option th:each="type: ${T(softuni.project.data.entities.enums.TypeOfRealEstate).values()}"
+                        th:text="${type}" th:value="${type}"></option>
+            </select>
+            <th:block th:if="${#fields.hasErrors('type')}">
+                <small class="error" th:errors="*{type}"></small>
+            </th:block>
+        </div>
+        <div class="form-group">
+            <label for="area" class="font-weight-bold">Квадратура</label>
+            <input type="number" name="price" id="area" class="form-control" th:field="*{area}" step="0.01"/>
+        </div>
+        <div class="form-group">
+            <label for="extras" class="font-weight-bold">Допълнителни екстри</label>
+            <select class="form-control" id="extras" th:field="*{extras}" multiple>
+                <option th:each="extras: ${T(softuni.project.data.entities.enums.Extras).values()}"
+                        th:text="${extras}" th:value="${extras}"></option>
+            </select>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" th:text="*{isPartyFree}" name="isPartyFree"
+                   id="isPartyFree" value="true">
+            <label class="form-check-label" for="isPartyFree">
+                Възможност за групови събирания?
+            </label>
+        </div>
+
+
+        <div class="form-group">
+            <label for="add-product-image" class="font-weight-bold">Снимка на офертата</label>
+            <input type="file" class="form-control-file" id="add-product-image" name="image">
+        </div>
+        </div>
+        <hr class="hr-2 bg-dark">
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-info">Сподели</button>
+        </div>
+    </form>
+</main>
+
+
+<th:block th:include="~{fragments/footer}"/>
+</body>
+<script>
+    $(".navbar ul li a").each(function () {
+        if (this.href === window.location.href) {
+            $(this).parent().addClass("active")
+        }
+    })
+</script>
+</html>

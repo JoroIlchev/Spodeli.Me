@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body  th:background="${url}">
+<header>
+    <th:block th:include="~{fragments/navbar}"/>
+</header>
+<main class="container mt-4">
+    <header class="jumbotron my-1">
+        <h1 class="display-4">Не бъди егоист, сподели!</h1>
+        <p class="lead">Търсиш да наемеш или искаш да споделиш? Ти си на правилното място!</p>
+        <a href="/users/register" class="btn btn-primary btn-lg">Споделям!</a>
+    </header>
+    <div class="row text-center justify-content-center mt-4">
+        <th:block th:each="category : ${categories}" th:object="${category}">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a th:href="@{/offer/category/{url}(url=${category.categoryUrl})}">
+                        <img class="card-img-top" th:src="*{image}" th:alt="*{name}">
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title">[[*{name}]]</h4>
+                        <p class="card-text">[[*{description}]]</p>
+                    </div>
+                    <div class="card-footer">
+                        <a th:href="@{/offer/category/{url}(url=${category.categoryUrl})}" class="btn btn-primary">Виж
+                            обявите в категорията</a>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+
+</main>
+
+<th:block th:include="~{fragments/footer}"/>
+</body>
+
+</html>
